@@ -68,3 +68,79 @@ int main() {
     }
     return 0;
 }
+
+
+// Write a program, which reads a string from the keyboard and generates the alphabetical order of characters that represents the string. Eg. PROGRAM should be written as AGMOPRR.
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX 100
+
+int main() {
+    char str[MAX], temp;
+    int i, j;
+
+    printf("Enter a string: ");
+    fgets(str, MAX, stdin);
+    
+    // Remove newline character if present
+    str[strcspn(str, "\n")] = '\0';
+
+    // Convert string to uppercase
+    for (i = 0; str[i]; i++) {
+        str[i] = toupper(str[i]);
+    }
+
+    // Sort the string
+    for (i = 0; str[i]; i++) {
+        for (j = i + 1; str[j]; j++) {
+            if (str[i] > str[j]) {
+                temp = str[i];
+                str[i] = str[j];
+                str[j] = temp;
+            }
+        }
+    }
+
+    printf("Alphabetical order: %s\n", str);
+
+    return 0;
+}
+
+
+// Write a program to check whether the string is a palindrome or not.
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define MAX 100
+int main() {
+    char str[MAX], reversed[MAX];
+    int i, length, isPalindrome = 1;
+    printf("Enter a string: ");
+    fgets(str, MAX, stdin);
+    // Remove newline character if present
+    str[strcspn(str, "\n")] = '\0';
+    // Convert string to lowercase
+    for (i = 0; str[i]; i++) {
+        str[i] = tolower(str[i]);
+    }
+    length = strlen(str);
+    // Reverse the string
+    for (i = 0; i < length; i++) {
+        reversed[i] = str[length - i - 1];
+    }
+    reversed[length] = '\0';
+    // Check if the original string is the same as the reversed string
+    if (strcmp(str, reversed) != 0) {
+        isPalindrome = 0;
+    }
+    if (isPalindrome) {
+        printf("The string is a palindrome.\n");
+    } else {
+        printf("The string is not a palindrome.\n");
+    }
+    return 0;
+}
+
+
